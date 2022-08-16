@@ -192,7 +192,7 @@ class ProductController extends Controller
     
 
 
-    'name'=>'required','max:255|min:3',
+    'name'=>'required|max:255|min:3',
      'category_id'=>'required',
      'brand_id'=>'required',
      'unit'=>'required',
@@ -214,7 +214,7 @@ class ProductController extends Controller
  ]);
 
  if($validate->fails()){
-     return back()->withErrors($validate->errors());
+     return back()->withErrors($validate->errors())->withInput();
     
  };
 
