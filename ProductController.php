@@ -20,6 +20,7 @@ use App\Services\ProductService;
 use App\Services\ProductTaxService;
 use App\Services\ProductFlashDealService;
 use App\Services\ProductStockService;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -184,31 +185,38 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
 
+        
+
+ $validate=Validator::make($request->all(),
+ [
+    
 
 
-        $request()->validate([
+    'name'=>'required','max:255|min:3',
+     'category_id'=>'required',
+     'brand_id'=>'required',
+     'unit'=>'required',
+     'tags'=>'required',
+     'min_qty'=>'required|gt:0|numeric',
+     'photos'=>'required',
+     'thumbnail_img'=>'required',
+     'unit_price'=>'required|numeric',
+     'discount'=>'required',
+     'current_stock'=>'required|numeric',
+     'description'=>'required',
+     'meta_description'=>'required',
+     'meta_title'=>'required',
+     'flat_shipping_cost'=>'numeric',
+     'est_shipping_days'=>'gt:0|numeric',
+ 
 
-            'name'=>['required','max:255','min:3'],
-            'category_id'=>['required'],
-            'brand_id'=>['required'],
-            'unit'=>['required'],
-            'tags'=>['required'],
-            'min_qty'=>['required','gt:0','numeric'],
-            'photos'=>['required'],
-            'thumbnail_img'=>['required'],
-            'unit_price'=>['required','numeric'],
-            'discount'=>['required'],
-            'current_stock'=>['required','numeric'],
-            'description'=>['required'],
-            'meta_description'=>['required'],
-            'meta_title'=>['required'],
-            'flat_shipping_cost'=>['numeric'],
-            'est_shipping_days'=>['gt:0','numeric'],
+    
+ ]);
 
-        ]);
-
-
-
+ if($validate->fails()){
+     return back()->withErrors($validate->errors());
+    
+ };
 
 
         $product = $this->productService->store($request->except([
