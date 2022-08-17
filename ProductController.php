@@ -179,7 +179,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ProductRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(ProductRequest $request)
@@ -187,36 +187,31 @@ class ProductController extends Controller
 
         
 
- $validate=Validator::make($request->all(),
- [
+
+        // $validate=$request->validate([
+        //     'name'=>'required|max:255|min:3',
+        //     'category_id'=>'required',
+        //     'brand_id'=>'required',
+        //     'unit'=>'required',
+        //     'tags'=>'required',
+        //     'min_qty'=>'required|gt:0|numeric',
+        //     'photos'=>'required',
+        //     'thumbnail_img'=>'required',
+        //     'unit_price'=>'required|numeric',
+        //     'discount'=>'required',
+        //     'current_stock'=>'required|numeric',
+        //     'description'=>'required',
+        //     'meta_description'=>'required',
+        //     'meta_title'=>'required',
+        //     'flat_shipping_cost'=>'numeric',
+        //     'est_shipping_days'=>'gt:0|numeric',
+        //  ]);
+
     
-
-
-    'name'=>'required|max:255|min:3',
-     'category_id'=>'required',
-     'brand_id'=>'required',
-     'unit'=>'required',
-     'tags'=>'required',
-     'min_qty'=>'required|gt:0|numeric',
-     'photos'=>'required',
-     'thumbnail_img'=>'required',
-     'unit_price'=>'required|numeric',
-     'discount'=>'required',
-     'current_stock'=>'required|numeric',
-     'description'=>'required',
-     'meta_description'=>'required',
-     'meta_title'=>'required',
-     'flat_shipping_cost'=>'numeric',
-     'est_shipping_days'=>'gt:0|numeric',
  
 
     
- ]);
-
- if($validate->fails()){
-     return back()->withErrors($validate->errors())->withInput();
-    
- };
+ 
 
 
         $product = $this->productService->store($request->except([

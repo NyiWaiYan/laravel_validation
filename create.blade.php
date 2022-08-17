@@ -131,9 +131,10 @@
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
                                     <input type="hidden" name="photos" class="selected-files">
+
                                     @error('photos')
-                              <small class="text-danger">{{ $message }}</small>
-                                @enderror
+                                     <small class="text-danger">{{ $message }}</small>
+                                     @enderror
                                 </div>
                                 <div class="file-preview box sm">
                                 </div>
@@ -150,8 +151,8 @@
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
                                     <input type="hidden" name="thumbnail_img" class="selected-files">
                                     @error('thumbnail_img')
-                              <small class="text-danger">{{ $message }}</small>
-                                @enderror
+                                    <small class="text-danger">{{ $message }}</small>
+                                     @enderror
                                 </div>
                                 <div class="file-preview box sm">
                                 </div>
